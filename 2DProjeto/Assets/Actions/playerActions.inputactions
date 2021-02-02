@@ -14,6 +14,22 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "035474da-dc07-4b40-b8ef-123dfff42247",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "881ba9f4-6ccb-4dcc-a3d4-5db2e05c52e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "69c7342a-d61b-4a27-8801-e8153eeeae69",
@@ -25,14 +41,6 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "9aa47056-26aa-4efc-aa00-71aad72b1d6b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "035474da-dc07-4b40-b8ef-123dfff42247",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -267,6 +275,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d220944c-ce6d-4443-a2e1-28b744956e1e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f489d052-c6d3-451e-b347-df4c93c9bd60",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
