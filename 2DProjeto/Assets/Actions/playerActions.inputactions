@@ -35,7 +35,15 @@
                     "id": "035474da-dc07-4b40-b8ef-123dfff42247",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "SuperJump",
+                    "type": "Button",
+                    "id": "e7aa71de-acd5-4a56-ba09-f765ac129074",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(pressPoint=0.3)"
                 }
             ],
             "bindings": [
@@ -274,7 +282,7 @@
                     "name": "",
                     "id": "07e5c28e-afff-43e9-8c82-8a8d738163dc",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
@@ -289,6 +297,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21c906b4-2b9d-4901-b431-95f6a7fec9c5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Hold(duration=0.5,pressPoint=0.3)",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SuperJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

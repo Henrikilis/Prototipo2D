@@ -454,6 +454,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 035474da-dc07-4b40-b8ef-123dfff42247
     m_ActionName: Player/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7aa71de-acd5-4a56-ba09-f765ac129074
+    m_ActionName: Player/SuperJump[/DualShock4GamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -468,7 +472,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1711044032}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6de6a9157a2f5ce4cadb348bf66442ff, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -515,7 +519,8 @@ MonoBehaviour:
     m_Bits: 256
   rb: {fileID: 1711044037}
   moveSpeed: 5
-  jumpForce: 5
+  jumpForce: 3
+  superJumpForce: 4
   isGrounded: 0
 --- !u!1 &1791988893
 GameObject:

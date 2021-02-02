@@ -12,7 +12,13 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
 
     public float moveSpeed;
+
+
+
+    [Header("Jump")]
     public float jumpForce;
+    public float superJumpForce;
+    // public 
 
     private float inputX;
     [SerializeField]
@@ -26,14 +32,14 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-    
-    void Update()
+    private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
+    }
 
+    private void FixedUpdate()
+    {      
         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
-
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -45,14 +51,21 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded)
+        if (isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         }
 
+        if(context.started)
+        {
+            rb.velocity =  Vector2.up * jumpForce;
+
+        }
+
 
     }
+
 
     private void OnDrawGizmos()
     {
