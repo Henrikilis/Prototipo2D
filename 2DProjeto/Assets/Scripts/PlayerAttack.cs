@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public GameObject basicAttack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,14 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        Debug.Log("Ataquei!");
+        
+        StartCoroutine(AttackCoroutine());
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        basicAttack.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        basicAttack.SetActive(false);
     }
 }
