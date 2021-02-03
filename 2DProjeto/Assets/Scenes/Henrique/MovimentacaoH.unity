@@ -553,7 +553,7 @@ MonoBehaviour:
   moveSpeed: 5
   tapJumpForce: 1
   jumpForce: 3
-  superJumpForce: 2
+  superJumpForce: 3
   isGrounded: 0
 --- !u!1 &1791988893
 GameObject:

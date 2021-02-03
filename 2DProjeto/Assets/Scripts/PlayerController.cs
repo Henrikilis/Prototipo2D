@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public InputMaster controls;
 
     public Transform groundPoint;
     public float radius;
@@ -27,22 +28,24 @@ public class PlayerController : MonoBehaviour
 
     
 
-    void Start()
+    void Awake()
     {
-    
+      
 
 
     }
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
+                isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
     }
 
     private void FixedUpdate()
-    {      
+    {     
+    if (gameObject.GetComponent<PlayerHealth>().takingDamage == false)
         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
     }
 
+    
     public void Move(InputAction.CallbackContext context)
     {
 
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /*
     public void TapJump(InputAction.CallbackContext context)
     {
         if (isGrounded && context.performed)
@@ -60,19 +64,22 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (isGrounded && context.performed)
+        if (isGrounded && context.started)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = Vector2.up * jumpForce;
             Debug.Log("jumping");
         }
 
+        
     }
-
+    
     public void SuperJump(InputAction.CallbackContext context)
     {
+
         if (context.performed)
         {
             rb.velocity = new Vector2(rb.velocity.x, superJumpForce);
@@ -87,5 +94,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(groundPoint.position, radius);
     }
+    */
 
 }
