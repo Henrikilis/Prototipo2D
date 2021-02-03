@@ -51,25 +51,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": ""Hold""
                 },
                 {
-                    ""name"": ""TapJump"",
-                    ""type"": ""Button"",
-                    ""id"": ""035474da-dc07-4b40-b8ef-123dfff42247"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""24a5e42e-7a33-4cf6-814a-5c0bbea5c5a0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""SuperJump"",
-                    ""type"": ""Button"",
-                    ""id"": ""e7aa71de-acd5-4a56-ba09-f765ac129074"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -331,34 +315,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""21c906b4-2b9d-4901-b431-95f6a7fec9c5"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": ""Hold(duration=0.2)"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""SuperJump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""33e1e8ca-e491-4441-91af-eb7c9ff8cd23"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""82a241b4-683a-4753-bb2d-bec61538f600"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": ""Tap(duration=0.4)"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""TapJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -940,9 +902,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-        m_Player_TapJump = m_Player.FindAction("TapJump", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_SuperJump = m_Player.FindAction("SuperJump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1008,9 +968,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
-    private readonly InputAction m_Player_TapJump;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_SuperJump;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -1019,9 +977,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
-        public InputAction @TapJump => m_Wrapper.m_Player_TapJump;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @SuperJump => m_Wrapper.m_Player_SuperJump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1043,15 +999,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @TapJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapJump;
-                @TapJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapJump;
-                @TapJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapJump;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @SuperJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSuperJump;
-                @SuperJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSuperJump;
-                @SuperJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSuperJump;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1068,15 +1018,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
-                @TapJump.started += instance.OnTapJump;
-                @TapJump.performed += instance.OnTapJump;
-                @TapJump.canceled += instance.OnTapJump;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @SuperJump.started += instance.OnSuperJump;
-                @SuperJump.performed += instance.OnSuperJump;
-                @SuperJump.canceled += instance.OnSuperJump;
             }
         }
     }
@@ -1237,9 +1181,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
-        void OnTapJump(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSuperJump(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
