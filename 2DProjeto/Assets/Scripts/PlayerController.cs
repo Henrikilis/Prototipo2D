@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Jump")]
+    public float tapJumpForce;
     public float jumpForce;
     public float superJumpForce;
     // public 
@@ -49,23 +50,37 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void TapJump(InputAction.CallbackContext context)
     {
-        if (isGrounded)
+        if (isGrounded && context.performed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
-        }
-
-        if(context.started)
-        {
-            rb.velocity =  Vector2.up * jumpForce;
-
+            rb.velocity = new Vector2(rb.velocity.x, tapJumpForce);
+            Debug.Log("tapJumping");
         }
 
 
     }
 
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (isGrounded && context.performed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Debug.Log("jumping");
+        }
+
+    }
+
+    public void SuperJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, superJumpForce);
+            Debug.Log("Superjumping");
+
+        }
+
+    }
 
     private void OnDrawGizmos()
     {
