@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public InputMaster controls;
+ 
 
     public Transform groundPoint;
     public float radius;
@@ -17,30 +17,86 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Jump")]
-    public float tapJumpForce;
+
+    [Range(1,20)]
     public float jumpForce;
-    public float superJumpForce;
+    [Range(0,1)]
+    public float jumpTime;
+    [Range(0, 10)]
+    public float fallMultiplier;
+    [Range(0, 5)]
+    public float lowFallMultiplier;
     // public 
 
     private float inputX;
-    [SerializeField]
     private bool isGrounded;
+    private bool isJumping;
+    private bool pressed = false;
+    private float jumpTimeCounter;
 
-    
-
-    void Awake()
+    private void Awake()
     {
-      
-
-
+        rb = GetComponent<Rigidbody2D>();
     }
+
     private void Update()
     {
-                isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
+
+        if(inputX > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if(inputX < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+
+        isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
+
+        if(rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+
+        }
+
+        if (pressed)
+        {
+            if (isGrounded && Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                isJumping = true;
+                jumpTimeCounter = jumpTime;
+                rb.velocity = Vector2.up * jumpForce;
+
+            }
+            if (Gamepad.current.buttonSouth.isPressed && isJumping)
+            {
+                
+                //  Debug.Log("SuperJump!");
+                if (jumpTimeCounter > 0)
+                {
+                    Debug.Log(jumpTimeCounter);
+                    rb.velocity = Vector2.up * jumpForce;
+                    jumpTimeCounter -= Time.deltaTime;
+
+                }
+                else
+                {
+                    isJumping = false;
+                    rb.velocity += Vector2.up * Physics2D.gravity.y * (lowFallMultiplier - 1) * Time.deltaTime;
+                }
+
+            }
+            if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
+            {
+                isJumping = false;
+            }
+
+        }
+
     }
 
     private void FixedUpdate()
-    {     
+    {        
     if (gameObject.GetComponent<PlayerHealth>().takingDamage == false)
         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
     }
@@ -48,44 +104,17 @@ public class PlayerController : MonoBehaviour
     
     public void Move(InputAction.CallbackContext context)
     {
-
+        
         inputX = context.ReadValue<Vector2>().x;
 
     }
 
-    /*
-    public void TapJump(InputAction.CallbackContext context)
-    {
-        if (isGrounded && context.performed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, tapJumpForce);
-            Debug.Log("tapJumping");
-        }
-
-
-    }
-    
-
     public void Jump(InputAction.CallbackContext context)
     {
-        if (isGrounded && context.started)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-            Debug.Log("jumping");
-        }
-
-        
-    }
-    
-    public void SuperJump(InputAction.CallbackContext context)
-    {
-
-        if (context.performed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, superJumpForce);
-            Debug.Log("Superjumping");
-
-        }
+        if (isGrounded && Gamepad.current.buttonSouth.wasPressedThisFrame)
+            pressed = true;
+        if (isGrounded && Gamepad.current.buttonSouth.wasReleasedThisFrame)
+            pressed = false;
 
     }
 
@@ -94,6 +123,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(groundPoint.position, radius);
     }
-    */
+    
 
 }
