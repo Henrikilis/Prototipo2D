@@ -9,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public bool dontMove;
     public bool damageCooldown;
+
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            anim.SetTrigger("Hurt");
             Debug.Log("Apanhei");
             currentHealth--;
             //Knockback
@@ -36,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && damageCooldown == false)
         {
+            anim.SetTrigger("Hurt");
             Debug.Log("Apanhei");
             currentHealth--;
             damageCooldown = true;
