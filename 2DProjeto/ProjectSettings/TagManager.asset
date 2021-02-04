@@ -18,8 +18,8 @@ TagManager:
   - Ground
   - Player
   - PlayerAttack
-  - 
-  - 
+  - PlayerDodge
+  - Enemy
   - 
   - 
   - 

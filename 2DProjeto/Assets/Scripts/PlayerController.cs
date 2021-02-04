@@ -34,6 +34,19 @@ public class PlayerController : MonoBehaviour
     private bool pressed = false;
     private float jumpTimeCounter;
 
+    [Header("Roll")]
+    public float dashSpeed;
+    private float dashTime;
+    public float startDashTime;
+    private int direction;
+    public bool rollPressed;
+    public bool facingRight;
+
+    void Start()
+    {
+        dashTime = startDashTime;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,10 +58,12 @@ public class PlayerController : MonoBehaviour
         if(inputX > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
+            facingRight = true;
         }
         else if(inputX < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
+            facingRight = false;
         }
 
         isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
@@ -93,11 +108,60 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        if (direction == 0)
+        {
+            if (rollPressed)
+            {
+                if (!facingRight)
+                {
+                    direction = 1;
+                }
+                else if (facingRight)
+                {
+                    direction = 2;
+                }
+            }
+        }
+        else
+        {
+            if (dashTime <= 0)
+            {
+                direction = 0;
+                dashTime = startDashTime;
+                rb.velocity = Vector2.zero;
+                rollPressed = false;
+                gameObject.GetComponent<PlayerHealth>().dontMove = false;
+                gameObject.layer = 9;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+
+                if (direction == 1)
+                {
+                    rb.velocity = Vector2.left * dashSpeed;
+                    Debug.Log("ESQUERDA");
+                }
+                else if (direction == 2)
+                {
+                    rb.velocity = Vector2.right * dashSpeed;
+                    Debug.Log("DIREITA");
+                }
+            }
+        }
+
+    }
+
+    public void Roll(InputAction.CallbackContext context)
+    {
+        gameObject.GetComponent<PlayerHealth>().dontMove = true;
+        rollPressed = true;
+        gameObject.layer = 11;
     }
 
     private void FixedUpdate()
     {        
-    if (gameObject.GetComponent<PlayerHealth>().takingDamage == false)
+    if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
     }
 

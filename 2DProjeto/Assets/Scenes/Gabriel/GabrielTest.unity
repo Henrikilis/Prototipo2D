@@ -647,13 +647,14 @@ MonoBehaviour:
     m_Bits: 256
   rb: {fileID: 1711044037}
   moveSpeed: 3
-  dashSpeed: 50
-  startDashTime: 0.1
-  rollPressed: 0
-  tapJumpForce: 0
   jumpForce: 5
-  superJumpForce: 0
-  isGrounded: 0
+  jumpTime: 0
+  fallMultiplier: 0
+  lowFallMultiplier: 0
+  dashSpeed: 5
+  startDashTime: 0.2
+  rollPressed: 0
+  facingRight: 0
 --- !u!114 &1711044039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +683,7 @@ MonoBehaviour:
   rb: {fileID: 1711044037}
   maxHealth: 5
   currentHealth: 0
-  takingDamage: 0
+  dontMove: 0
 --- !u!1 &1791988893
 GameObject:
   m_ObjectHideFlags: 0
