@@ -520,8 +520,9 @@ MonoBehaviour:
     m_Bits: 256
   rb: {fileID: 0}
   moveSpeed: 5
-  jumpForce: 6
-  jumpTime: 0.2
+  initialJumpForce: 2.5
+  jumpForce: 0.22
+  jumpTime: 0.487
   fallMultiplier: 1
   lowFallMultiplier: 0.54
 --- !u!114 &1711044039

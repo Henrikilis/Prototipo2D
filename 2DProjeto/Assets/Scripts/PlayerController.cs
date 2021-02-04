@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
 
-    [Range(1,20)]
+    [Range(1, 20)]
+    public float initialJumpForce;
+    [Range(0,1)]
     public float jumpForce;
     [Range(0,1)]
     public float jumpTime;
@@ -74,23 +76,24 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        /*
         if (pressed)
         {
             if (isGrounded && Gamepad.current.buttonSouth.wasPressedThisFrame)
             {
                 isJumping = true;
                 jumpTimeCounter = jumpTime;
-                rb.velocity = Vector2.up * jumpForce;
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             }
             if (Gamepad.current.buttonSouth.isPressed && isJumping)
             {
                 
-                //  Debug.Log("SuperJump!");
+                
                 if (jumpTimeCounter > 0)
                 {
-                    Debug.Log(jumpTimeCounter);
-                    rb.velocity = Vector2.up * jumpForce;
+                    
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
                     jumpTimeCounter -= Time.deltaTime;
 
                 }
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
+<<<<<<< Updated upstream
         if (direction == 0)
         {
             if (rollPressed)
@@ -157,12 +161,55 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponent<PlayerHealth>().dontMove = true;
         rollPressed = true;
         gameObject.layer = 11;
+=======
+    */
+
+
     }
 
     private void FixedUpdate()
-    {        
-    if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
-        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+    {
+        if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
+         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+
+    
+
+        if (pressed)
+        {
+            if (isGrounded)
+            {
+                isJumping = true;
+                jumpTimeCounter = jumpTime;
+                rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
+
+            }
+            if (Gamepad.current.buttonSouth.isPressed && isJumping)
+            {
+
+
+                if (jumpTimeCounter > 0)
+                {
+
+                    rb.velocity +=  Vector2.up * jumpForce;
+                    jumpTimeCounter -= Time.deltaTime;
+
+                }
+                else
+                {
+                    isJumping = false;
+                    pressed = false;
+                    rb.velocity += Vector2.up * Physics2D.gravity.y * (lowFallMultiplier - 1) * Time.deltaTime;
+                }
+
+            }
+            if (!Gamepad.current.buttonSouth.isPressed)
+            {
+                isJumping = false;
+                pressed = false;
+            }
+
+        }
+
     }
 
     
@@ -177,8 +224,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Gamepad.current.buttonSouth.wasPressedThisFrame)
             pressed = true;
-        if (isGrounded && Gamepad.current.buttonSouth.wasReleasedThisFrame)
-            pressed = false;
+        // if (isGrounded && Gamepad.current.buttonSouth.wasReleasedThisFrame)
+          //  pressed = false;
 
     }
 
