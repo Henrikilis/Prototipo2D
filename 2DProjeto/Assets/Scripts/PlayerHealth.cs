@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public bool dontMove;
+    public bool damageCooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +32,21 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(Knockback(other));
         }
     }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy") && damageCooldown == false)
+        {
+            Debug.Log("Apanhei");
+            currentHealth--;
+            damageCooldown = true;
+            //Knockback
+            StartCoroutine(KnockbackT(other));
+        }
+    }
 
     IEnumerator Knockback(Collision2D other)
     {
+        gameObject.layer = 11;
         dontMove = true;
         gameObject.GetComponent<PlayerController>().moveSpeed = 0;
         Vector2 direction = (transform.position - other.transform.position).normalized;
@@ -42,5 +55,20 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         dontMove = false;
         gameObject.GetComponent<PlayerController>().moveSpeed = 3;
+        gameObject.layer = 9;
+    }
+    IEnumerator KnockbackT(Collider2D other)
+    {
+        gameObject.layer = 11;
+        dontMove = true;
+        gameObject.GetComponent<PlayerController>().moveSpeed = 0;
+        Vector2 direction = (transform.position - other.transform.position).normalized;
+        rb.AddForce(direction * 100);
+        rb.velocity = new Vector2(rb.velocity.x, 3);
+        yield return new WaitForSeconds(0.5f);
+        dontMove = false;
+        gameObject.GetComponent<PlayerController>().moveSpeed = 3;
+        damageCooldown = false;
+        gameObject.layer = 9;
     }
 }
