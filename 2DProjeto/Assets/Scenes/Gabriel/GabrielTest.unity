@@ -424,7 +424,7 @@ Transform:
   m_GameObject: {fileID: 1711044032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400245823}
   - {fileID: 461173474}
@@ -522,22 +522,6 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1711044038}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 035474da-dc07-4b40-b8ef-123dfff42247
-    m_ActionName: Player/Jump
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 1711044039}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
         m_MethodName: Attack
@@ -556,10 +540,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 24a5e42e-7a33-4cf6-814a-5c0bbea5c5a0
     m_ActionName: Player/Jump
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e7aa71de-acd5-4a56-ba09-f765ac129074
-    m_ActionName: Player/SuperJump
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1711044038}
@@ -647,6 +627,7 @@ MonoBehaviour:
     m_Bits: 256
   rb: {fileID: 1711044037}
   moveSpeed: 3
+  initialJumpForce: 0
   jumpForce: 5
   jumpTime: 0
   fallMultiplier: 0
@@ -684,6 +665,7 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   dontMove: 0
+  damageCooldown: 0
 --- !u!1 &1791988893
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,12 +761,24 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2545930439768198918, guid: 98fe33fa3e4caef49b942c0fd2f83a09, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545930439768198918, guid: 98fe33fa3e4caef49b942c0fd2f83a09, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545930439768198918, guid: 98fe33fa3e4caef49b942c0fd2f83a09, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545930439768198918, guid: 98fe33fa3e4caef49b942c0fd2f83a09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.46
       objectReference: {fileID: 0}
     - target: {fileID: 2545930439768198918, guid: 98fe33fa3e4caef49b942c0fd2f83a09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.811
+      value: -2.64
       objectReference: {fileID: 0}
     - target: {fileID: 2545930439768198918, guid: 98fe33fa3e4caef49b942c0fd2f83a09, type: 3}
       propertyPath: m_LocalPosition.z
@@ -840,12 +834,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.188
       objectReference: {fileID: 0}
     - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.88
+      value: -2.767
       objectReference: {fileID: 0}
     - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
       propertyPath: m_LocalPosition.z
