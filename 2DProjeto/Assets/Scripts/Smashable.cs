@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Smashable : MonoBehaviour
 {
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,12 @@ public class Smashable : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerAttack"))
         {
-            Debug.Log("Colidi");
-            Destroy(gameObject);
+            anim.SetTrigger("Dead");
         }
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

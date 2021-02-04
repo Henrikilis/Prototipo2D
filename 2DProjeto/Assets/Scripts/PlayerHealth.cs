@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public bool damageCooldown;
 
     public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,8 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth == 0)
-            Destroy(gameObject);
+        if (currentHealth == 0)
+            anim.SetTrigger("Dead");
     }
 
     void OnCollisionEnter2D(Collision2D other)
