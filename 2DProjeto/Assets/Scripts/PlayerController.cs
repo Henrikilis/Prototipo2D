@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier;
     [Range(0, 5)]
     public float lowFallMultiplier;
+
+    public float jumpDelay;
+    private float futureJump;
+    public float gravity = 1f;
     // public 
 
     private float inputX;
@@ -44,6 +48,7 @@ public class PlayerController : MonoBehaviour
     public bool rollPressed;
     public bool facingRight;
 
+    public Vector2 boxSize;
    
     private void Awake()
     {
@@ -53,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+       
+
         // FLIP
         if(inputX > 0)
         {
@@ -65,7 +72,11 @@ public class PlayerController : MonoBehaviour
             facingRight = false;
         }
         // GROUND CHECK
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround); // && !Gamepad.current.buttonSouth.isPressed;
+
+        
+        
+        isGrounded = Physics2D.OverlapBox(groundPoint.position, boxSize, 0f, whatIsGround);
+
 
        
 
@@ -113,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
+        
     }
 
  
@@ -123,48 +134,31 @@ public class PlayerController : MonoBehaviour
         if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
          rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
 
-        // PULO
+        
+
+        
+        // FISICA DO PULO
 
         if (rb.velocity.y < 0)
         {
-            rb.gravityScale = fallMultiplier;
+            
+            rb.gravityScale = gravity * (lowFallMultiplier / 2);
+
+        }
+        else if(rb.velocity.y > 0 && !Gamepad.current.buttonSouth.isPressed)
+        {
+            rb.gravityScale = gravity * lowFallMultiplier ;
 
         }
 
-        if (pressed)
-        {
-            if (isGrounded)
-            {
-                isJumping = true;
-                jumpTimeCounter = jumpTime;
-                rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
-
-            }
-            if (Gamepad.current.buttonSouth.isPressed && isJumping)
-            {
-
-
-                if (jumpTimeCounter > 0)
-                {
-
-                    rb.velocity += Vector2.up * jumpForce;
-                    jumpTimeCounter -= Time.deltaTime;
-
-                }
-                else
-                {
-                    isJumping = false;
-                    pressed = false;
-                    rb.gravityScale = lowFallMultiplier;
-                }
-
-            }
-            if (!Gamepad.current.buttonSouth.isPressed && isGrounded)
-            {
-                rb.gravityScale = 1f;
-                isJumping = false;
-                pressed = false;
-            }
+        // PULO
+        if (futureJump > Time.time && isGrounded)
+        {   
+            jumpTimeCounter = jumpTime;
+            isJumping = true;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
+            futureJump = 0;
 
         }
 
@@ -190,16 +184,17 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (isGrounded && context.performed)
-            pressed = true;
-        
+
+        //    pressed = true;
+        if (context.performed)
+        futureJump = Time.time + jumpDelay;
 
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(groundPoint.position, radius);
+        Gizmos.DrawCube(groundPoint.position, boxSize);
     }
     
 
