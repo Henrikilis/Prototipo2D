@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             facingRight = false;
         }
         // GROUND CHECK
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround); // && !Gamepad.current.buttonSouth.isPressed;
 
        
 
