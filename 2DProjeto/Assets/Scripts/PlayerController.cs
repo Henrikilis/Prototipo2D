@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        // FLIP
         if(inputX > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);
             facingRight = false;
         }
-
+        // GROUND CHECK
         isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, whatIsGround);
 
         if(rb.velocity.y < 0)
@@ -76,42 +76,45 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        /*
+        // PULO
+
         if (pressed)
         {
-            if (isGrounded && Gamepad.current.buttonSouth.wasPressedThisFrame)
+            if (isGrounded)
             {
                 isJumping = true;
                 jumpTimeCounter = jumpTime;
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
 
             }
             if (Gamepad.current.buttonSouth.isPressed && isJumping)
             {
-                
-                
+
+
                 if (jumpTimeCounter > 0)
                 {
-                    
-                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
+
+                    rb.velocity += Vector2.up * jumpForce;
                     jumpTimeCounter -= Time.deltaTime;
 
                 }
                 else
                 {
                     isJumping = false;
+                    pressed = false;
                     rb.velocity += Vector2.up * Physics2D.gravity.y * (lowFallMultiplier - 1) * Time.deltaTime;
                 }
 
             }
-            if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
+            if (!Gamepad.current.buttonSouth.isPressed)
             {
                 isJumping = false;
+                pressed = false;
             }
 
         }
 
-<<<<<<< Updated upstream
+        // ROLL
         if (direction == 0)
         {
             if (rollPressed)
@@ -156,63 +159,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+ 
+    private void FixedUpdate()
+    {
+       // MOVIMENTO BASICO
+        if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
+         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+
+       
+
+    }
+
     public void Roll(InputAction.CallbackContext context)
     {
         gameObject.GetComponent<PlayerHealth>().dontMove = true;
         rollPressed = true;
         gameObject.layer = 11;
-=======
-    */
-
-
     }
 
-    private void FixedUpdate()
-    {
-        if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
-         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
-
-    
-
-        if (pressed)
-        {
-            if (isGrounded)
-            {
-                isJumping = true;
-                jumpTimeCounter = jumpTime;
-                rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
-
-            }
-            if (Gamepad.current.buttonSouth.isPressed && isJumping)
-            {
-
-
-                if (jumpTimeCounter > 0)
-                {
-
-                    rb.velocity +=  Vector2.up * jumpForce;
-                    jumpTimeCounter -= Time.deltaTime;
-
-                }
-                else
-                {
-                    isJumping = false;
-                    pressed = false;
-                    rb.velocity += Vector2.up * Physics2D.gravity.y * (lowFallMultiplier - 1) * Time.deltaTime;
-                }
-
-            }
-            if (!Gamepad.current.buttonSouth.isPressed)
-            {
-                isJumping = false;
-                pressed = false;
-            }
-
-        }
-
-    }
-
-    
     public void Move(InputAction.CallbackContext context)
     {
         
@@ -224,8 +188,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Gamepad.current.buttonSouth.wasPressedThisFrame)
             pressed = true;
-        // if (isGrounded && Gamepad.current.buttonSouth.wasReleasedThisFrame)
-          //  pressed = false;
+        
 
     }
 

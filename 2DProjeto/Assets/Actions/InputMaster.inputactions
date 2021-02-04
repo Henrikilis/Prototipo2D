@@ -30,25 +30,9 @@
                     "interactions": "Hold"
                 },
                 {
-                    "name": "TapJump",
-                    "type": "Button",
-                    "id": "035474da-dc07-4b40-b8ef-123dfff42247",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "24a5e42e-7a33-4cf6-814a-5c0bbea5c5a0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "SuperJump",
-                    "type": "Button",
-                    "id": "e7aa71de-acd5-4a56-ba09-f765ac129074",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -326,34 +310,12 @@
                 },
                 {
                     "name": "",
-                    "id": "82a241b4-683a-4753-bb2d-bec61538f600",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Tap(duration=0.4)",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "TapJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "33e1e8ca-e491-4441-91af-eb7c9ff8cd23",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "21c906b4-2b9d-4901-b431-95f6a7fec9c5",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Hold(duration=0.2)",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SuperJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
