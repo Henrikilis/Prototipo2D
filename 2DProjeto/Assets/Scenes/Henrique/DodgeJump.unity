@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundPoint: {fileID: 400245823}
-  radius: 0.05
+  radius: 0.1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
