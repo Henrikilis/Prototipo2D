@@ -116,7 +116,11 @@ public class PlayerController : MonoBehaviour
         if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
          rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
 
-        
+        // VERIFICAÇÃO IDLE
+        anim.SetFloat("Speed", inputX);
+        if (inputX == 0)
+            anim.SetBool("Idle", true);
+        else { anim.SetBool("Idle", false); }
 
         
         // FISICA DO PULO
