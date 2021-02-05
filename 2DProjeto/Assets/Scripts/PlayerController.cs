@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
  
 
     public Transform groundPoint;
-    public float radius;
     public LayerMask whatIsGround;
     public Rigidbody2D rb;
 
@@ -20,25 +19,18 @@ public class PlayerController : MonoBehaviour
 
     [Range(1, 20)]
     public float initialJumpForce;
-    [Range(0,1)]
-    public float jumpForce;
-    [Range(0,1)]
-    public float jumpTime;
-    [Range(0, 10)]
-    public float fallMultiplier;
     [Range(0, 5)]
     public float lowFallMultiplier;
 
     public float jumpDelay;
     private float futureJump;
     public float gravity = 1f;
-    // public 
+    
 
     private float inputX;
     private bool isGrounded;
     private bool isJumping;
     private bool pressed = false;
-    private float jumpTimeCounter;
 
     [Header("Roll")]
     public float dashSpeed;
@@ -58,8 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-       
-
+        Debug.Log(isGrounded);
         // FLIP
         if(inputX > 0)
         {
@@ -71,16 +62,9 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);
             facingRight = false;
         }
-        // GROUND CHECK
 
-        
-        
+        // GROUND CHECK  
         isGrounded = Physics2D.OverlapBox(groundPoint.position, boxSize, 0f, whatIsGround);
-
-
-       
-
-       
 
         // ROLL
         if (direction == 0)
@@ -158,7 +142,6 @@ public class PlayerController : MonoBehaviour
         // PULO
         if (futureJump > Time.time && isGrounded)
         {   
-            jumpTimeCounter = jumpTime;
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
