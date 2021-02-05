@@ -299,15 +299,19 @@ MonoBehaviour:
     m_Bits: 256
   rb: {fileID: 0}
   moveSpeed: 5
+  anim: {fileID: 2944259358398163278}
   initialJumpForce: 2.5
   jumpForce: 0.22
   jumpTime: 0.487
   fallMultiplier: 1
   lowFallMultiplier: 0.54
+  jumpDelay: 0
+  gravity: 1
   dashSpeed: 5
   startDashTime: 0.2
   rollPressed: 0
   facingRight: 0
+  boxSize: {x: 0, y: 0}
 --- !u!114 &5735734724062541761
 MonoBehaviour:
   m_ObjectHideFlags: 0

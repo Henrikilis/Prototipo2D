@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
 
-
+    public Animator anim;
 
     [Header("Jump")]
 
@@ -143,13 +143,17 @@ public class PlayerController : MonoBehaviour
         {
             
             rb.gravityScale = gravity * (lowFallMultiplier / 2);
-
         }
         else if(rb.velocity.y > 0 && !Gamepad.current.buttonSouth.isPressed)
         {
             rb.gravityScale = gravity * lowFallMultiplier ;
-
         }
+
+        // ANIMAÇAO
+        if (rb.velocity.y == 0)
+        {
+            anim.SetBool("isGrounded", true);
+        } else { anim.SetBool("isGrounded", false); }
 
         // PULO
         if (futureJump > Time.time && isGrounded)
@@ -162,6 +166,10 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        // ANIMAÇÕES
+        //if (!isGrounded)
+        //    anim.SetBool("isGrounded", false);
+        //else if (isGrounded) { anim.SetBool("isGrounded", true); }
     }
 
     public void Roll(InputAction.CallbackContext context)
@@ -184,11 +192,12 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-
         //    pressed = true;
         if (context.performed)
-        futureJump = Time.time + jumpDelay;
-
+        {
+            futureJump = Time.time + jumpDelay;
+            anim.SetTrigger("Jump");
+        }
     }
 
     private void OnDrawGizmos()
