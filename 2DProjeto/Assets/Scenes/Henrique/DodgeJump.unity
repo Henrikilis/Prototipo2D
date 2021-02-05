@@ -283,14 +283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5735734724062541760, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
-      propertyPath: initialJumpForce
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5735734724062541760, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
-      propertyPath: lowFallMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5735734724062541764, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1432,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4169364092180932352, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4169364092180932356, guid: ff0d1cba8df03fd478e57a7c65055884, type: 3}
       propertyPath: m_RootOrder

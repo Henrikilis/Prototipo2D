@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     private float inputX;
     private bool isGrounded;
     private bool isJumping;
-    private bool pressed = false;
 
     [Header("Roll")]
     public float dashSpeed;
@@ -50,7 +49,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isGrounded);
         // FLIP
         if(inputX > 0)
         {
