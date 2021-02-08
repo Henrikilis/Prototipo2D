@@ -307,7 +307,7 @@ MonoBehaviour:
   startDashTime: 0.2
   rollPressed: 0
   facingRight: 0
-  boxSize: {x: 0.3, y: 0.1}
+  boxSize: {x: 0.46, y: 0.1}
 --- !u!114 &5735734724062541761
 MonoBehaviour:
   m_ObjectHideFlags: 0

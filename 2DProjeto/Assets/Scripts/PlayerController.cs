@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private float inputX;
     private bool isGrounded;
-    private bool isJumping;
 
     [Header("Roll")]
     public float dashSpeed;
@@ -144,7 +143,6 @@ public class PlayerController : MonoBehaviour
         // PULO
         if (futureJump > Time.time && isGrounded)
         {   
-            isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
             futureJump = 0;
