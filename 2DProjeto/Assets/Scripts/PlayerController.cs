@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
- 
-
     public Transform groundPoint;
     public LayerMask whatIsGround;
     public Rigidbody2D rb;
@@ -62,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         // GROUND CHECK  
         isGrounded = Physics2D.OverlapBox(groundPoint.position, boxSize, 0f, whatIsGround);
+        anim.SetBool("isGrounded", isGrounded);
 
         // ROLL
         if (direction == 0)
@@ -135,10 +134,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // ANIMAÇAO
-        if (rb.velocity.y == 0)
-        {
-            anim.SetBool("isGrounded", true);
-        } else { anim.SetBool("isGrounded", false); }
+        //if (rb.velocity.y == 0)
+        //{
+        //    anim.SetBool("isGrounded", true);
+        //} else { anim.SetBool("isGrounded", false); }
 
         // PULO
         if (futureJump > Time.time && isGrounded)
@@ -148,11 +147,6 @@ public class PlayerController : MonoBehaviour
             futureJump = 0;
 
         }
-
-        // ANIMAÇÕES
-        //if (!isGrounded)
-        //    anim.SetBool("isGrounded", false);
-        //else if (isGrounded) { anim.SetBool("isGrounded", true); }
     }
 
     public void Roll(InputAction.CallbackContext context)
@@ -161,8 +155,7 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<PlayerHealth>().dontMove = true;
             rollPressed = true;
             gameObject.layer = 11;
-
-
+            anim.SetTrigger("Roll");
         }
     }
 

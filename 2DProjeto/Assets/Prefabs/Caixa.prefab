@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4169364092180932353}
   - component: {fileID: 4169364092180932357}
   - component: {fileID: -3836127236892888407}
-  m_Layer: 12
+  m_Layer: 8
   m_Name: Caixa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 5
 --- !u!114 &4169364092180932357
 MonoBehaviour:
   m_ObjectHideFlags: 0
