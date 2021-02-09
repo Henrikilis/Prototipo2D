@@ -23,6 +23,7 @@ public class Smashable : MonoBehaviour
         if(other.gameObject.CompareTag("PlayerAttack"))
         {
             anim.SetTrigger("Dead");
+            gameObject.layer = 0;
         }
     }
 
