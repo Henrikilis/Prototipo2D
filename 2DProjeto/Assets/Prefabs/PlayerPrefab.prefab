@@ -447,6 +447,11 @@ MonoBehaviour:
   doubleJumpForce: 7
   doubleJumpTime: 5
   doubleJumpCDactive: 0
+  dashSpeed: 7
+  startDashTime: 0.3
+  dashPressed: 0
+  dashCDTime: 6
+  dashCDactive: 0
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0

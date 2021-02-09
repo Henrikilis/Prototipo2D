@@ -24,6 +24,9 @@ public class powerBook : MonoBehaviour
     public float startDashTime;
     private int direction;
     public bool dashPressed;
+    private float dashCD;
+    public float dashCDTime;
+    public bool dashCDactive;
 
     void Start()
     {
@@ -35,6 +38,7 @@ public class powerBook : MonoBehaviour
 
     void Update()
     {
+        // COOLDOWNS
         if (doubleJumpCDactive)
         {
             doubleJumpCD -= Time.deltaTime;
@@ -42,6 +46,15 @@ public class powerBook : MonoBehaviour
             {
                 doubleJumpCD = doubleJumpTime;
                 doubleJumpCDactive = false;
+            }
+        }
+        if (dashCDactive)
+        {
+            dashCD -= Time.deltaTime;
+            if (dashCD <= 0)
+            {
+                dashCD = dashCDTime;
+                dashCDactive = false;
             }
         }
 
@@ -107,9 +120,13 @@ public class powerBook : MonoBehaviour
 
     public void DashF()
     {
-        Debug.Log("DashF");
-        gameObject.GetComponent<PlayerHealth>().dontMove = true;
-        dashPressed = true;
+        if(dashCDactive == false)
+        {
+            Debug.Log("DashF");
+            gameObject.GetComponent<PlayerHealth>().dontMove = true;
+            dashPressed = true;
+            dashCDactive = true;
+        }
     }
 
     public void DashU()
