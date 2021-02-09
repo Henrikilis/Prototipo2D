@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 2545930439768198937}
   - component: {fileID: 2545930439768198938}
   - component: {fileID: 5462341366944305055}
+  - component: {fileID: 3758320092189708373}
   m_Layer: 12
   m_Name: InimigoEstatico
   m_TagString: Enemy
@@ -240,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5462341366944305055}
+  stompJumpForce: 10
 --- !u!95 &5462341366944305055
 Animator:
   serializedVersion: 3
@@ -259,3 +261,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &3758320092189708373
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545930439768198939}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01, y: 0.1}
+  m_Size: {x: 0.3, y: 0.1}
+  m_Direction: 1
