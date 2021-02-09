@@ -133,12 +133,6 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = gravity * lowFallMultiplier ;
         }
 
-        // ANIMAÇAO
-        //if (rb.velocity.y == 0)
-        //{
-        //    anim.SetBool("isGrounded", true);
-        //} else { anim.SetBool("isGrounded", false); }
-
         // PULO
         if (futureJump > Time.time && isGrounded)
         {   

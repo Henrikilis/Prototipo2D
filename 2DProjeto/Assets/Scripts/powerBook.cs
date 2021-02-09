@@ -18,11 +18,19 @@ public class powerBook : MonoBehaviour
     public float doubleJumpTime;
     public bool doubleJumpCDactive;
 
+    [Header("Dash")]
+    public float dashSpeed;
+    private float dashTime;
+    public float startDashTime;
+    private int direction;
+    public bool dashPressed;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentPower = 0;
         Debug.Log(powers[currentPower]);
+        dashTime = startDashTime;
     }
 
     void Update()
@@ -34,6 +42,48 @@ public class powerBook : MonoBehaviour
             {
                 doubleJumpCD = doubleJumpTime;
                 doubleJumpCDactive = false;
+            }
+        }
+
+        // DASH
+        if (direction == 0)
+        {
+            if (dashPressed)
+            {
+                if (gameObject.GetComponent<PlayerController>().facingRight == false)
+                {
+                    direction = 1;
+                }
+                else if (gameObject.GetComponent<PlayerController>().facingRight == true)
+                {
+                    direction = 2;
+                }
+            }
+        }
+        else
+        {
+            if (dashTime <= 0)
+            {
+                direction = 0;
+                dashTime = startDashTime;
+                rb.velocity = Vector2.zero;
+                dashPressed = false;
+                gameObject.GetComponent<PlayerHealth>().dontMove = false;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+
+                if (direction == 1)
+                {
+                    rb.velocity = Vector2.left * dashSpeed;
+                    Debug.Log("ESQUERDA");
+                }
+                else if (direction == 2)
+                {
+                    rb.velocity = Vector2.right * dashSpeed;
+                    Debug.Log("DIREITA");
+                }
             }
         }
     }
@@ -58,7 +108,8 @@ public class powerBook : MonoBehaviour
     public void DashF()
     {
         Debug.Log("DashF");
-
+        gameObject.GetComponent<PlayerHealth>().dontMove = true;
+        dashPressed = true;
     }
 
     public void DashU()
