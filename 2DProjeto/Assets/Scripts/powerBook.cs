@@ -72,11 +72,6 @@ public class powerBook : MonoBehaviour
         if (rb.velocity.y < 0 && isStomping)
         {
             stompDuration += Time.deltaTime;
-
-        }
-        else
-        {
-            stompDuration = 0;        
         }
            
 
@@ -126,18 +121,6 @@ public class powerBook : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (stompDuration > 0 && isStomping)
-        {
-            
-            rb.velocity = new Vector2(0, 0);
-            rb.AddForce(Vector2.down * stompSpeed, ForceMode2D.Impulse);
-            isStomping = false;
-            
-
-        }
-    }
 
     public void DoubleJump()
     {
@@ -155,8 +138,11 @@ public class powerBook : MonoBehaviour
        
         if (!GetComponent<PlayerController>().isGrounded && doubleJumpCDactive == false)
         {
-            gameObject.GetComponent<PlayerHealth>().dontMove = true;
             isStomping = true;
+            // gameObject.GetComponent<PlayerHealth>().dontMove = true;
+            rb.velocity = new Vector2(0, 0);
+            rb.AddForce(Vector2.down * stompSpeed, ForceMode2D.Impulse);
+            
             doubleJumpCDactive = true;
 
         }
@@ -168,7 +154,7 @@ public class powerBook : MonoBehaviour
         if(dashCDactive == false)
         {
             Debug.Log("DashF");
-           // gameObject.GetComponent<PlayerHealth>().dontMove = true;
+            gameObject.GetComponent<PlayerHealth>().dontMove = true;
             dashPressed = true;
             dashCDactive = true;
         }
