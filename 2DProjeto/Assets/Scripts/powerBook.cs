@@ -72,6 +72,13 @@ public class powerBook : MonoBehaviour
         if (rb.velocity.y < 0 && isStomping)
         {
             stompDuration += Time.deltaTime;
+            
+        }
+        else
+        {
+            
+            isStomping = false;
+
         }
            
 
@@ -138,6 +145,7 @@ public class powerBook : MonoBehaviour
        
         if (!GetComponent<PlayerController>().isGrounded && doubleJumpCDactive == false)
         {
+            stompDuration = 0;
             isStomping = true;
             // gameObject.GetComponent<PlayerHealth>().dontMove = true;
             rb.velocity = new Vector2(0, 0);
