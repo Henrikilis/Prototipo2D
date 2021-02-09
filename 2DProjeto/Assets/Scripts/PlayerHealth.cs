@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class PlayerHealth : MonoBehaviour
     public bool damageCooldown;
 
     public Animator anim;
+    public GameObject hp;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        hp = GameObject.Find("HP");
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth--;
             //Knockback
             StartCoroutine(Knockback(other));
+            UIdamage();
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -46,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
             damageCooldown = true;
             //Knockback
             StartCoroutine(KnockbackT(other));
+            UIdamage();
         }
     }
 
@@ -75,5 +80,10 @@ public class PlayerHealth : MonoBehaviour
         gameObject.GetComponent<PlayerController>().moveSpeed = 3;
         damageCooldown = false;
         gameObject.layer = 9;
+    }
+
+    public void UIdamage()
+    {
+        hp.GetComponent<Slider>().value = currentHealth;
     }
 }
