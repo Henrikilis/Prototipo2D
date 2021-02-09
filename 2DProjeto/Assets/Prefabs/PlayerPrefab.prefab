@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5735734724062541761}
   - component: {fileID: 5735734724062541774}
   - component: {fileID: 2944259358398163278}
+  - component: {fileID: 889907538}
   m_Layer: 9
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -228,6 +229,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4e87bf35-29e7-4301-9672-64ea77454076
     m_ActionName: Player/Roll[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 889907538}
+        m_TargetAssemblyTypeName: powerBook, Assembly-CSharp
+        m_MethodName: SwapLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9cb1810f-5c58-4439-b482-5b40e2178d0e
+    m_ActionName: Player/SwapLeft[/DualShock4GamepadHID/leftShoulder,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 889907538}
+        m_TargetAssemblyTypeName: powerBook, Assembly-CSharp
+        m_MethodName: SwapRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6cfedf53-3edc-4d1c-a36b-eb8473a88314
+    m_ActionName: Player/SwapRight[/DualShock4GamepadHID/rightShoulder,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 889907538}
+        m_TargetAssemblyTypeName: powerBook, Assembly-CSharp
+        m_MethodName: Power1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 40cebaae-124b-41bb-9f72-803c1dfbbb26
+    m_ActionName: Player/Power1[/DualShock4GamepadHID/rightTrigger,/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 889907538}
+        m_TargetAssemblyTypeName: powerBook, Assembly-CSharp
+        m_MethodName: Power2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 44820ca3-6457-4f5a-825b-fef538646dcf
+    m_ActionName: Player/Power2[/DualShock4GamepadHID/leftTrigger,/Keyboard/o]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -358,6 +423,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &889907538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735734724062541766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfbf5d4343bbd84081f42df7045e472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  powers:
+  - doublejump
+  - dash
+  - deflect
+  - shield
+  - swap
+  - slowdown
+  currentPower: 0
+  doubleJumpForce: 1
+  doubleJumpCD: 0
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0
