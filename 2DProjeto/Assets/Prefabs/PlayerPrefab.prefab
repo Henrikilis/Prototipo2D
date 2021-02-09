@@ -317,7 +317,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &5735734724062541762
 BoxCollider2D:
@@ -368,6 +368,7 @@ MonoBehaviour:
   lowFallMultiplier: 1.5
   jumpDelay: 0.25
   gravity: 1
+  isGrounded: 0
   dashSpeed: 5
   startDashTime: 0.2
   rollPressed: 0
@@ -452,6 +453,9 @@ MonoBehaviour:
   dashPressed: 0
   dashCDTime: 6
   dashCDactive: 0
+  stompSpeed: 4
+  stompDuration: 0
+  stompCDActive: 0
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0

@@ -473,6 +473,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 889907538, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
+      propertyPath: dashSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 889907538, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
+      propertyPath: stompSpeed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 889907538, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
+      propertyPath: doubleJumpForce
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5735734724062541764, guid: aa97e150ec0328b42b81009bb5d188ab, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1556,6 +1568,7 @@ MonoBehaviour:
   lowFallMultiplier: 2
   jumpDelay: 0.25
   gravity: 1
+  isGrounded: 0
   dashSpeed: 5
   startDashTime: 0.2
   rollPressed: 0

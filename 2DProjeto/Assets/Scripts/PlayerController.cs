@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     
 
     private float inputX;
-    private bool isGrounded;
+    public bool isGrounded;
 
     [Header("Roll")]
     public float dashSpeed;
