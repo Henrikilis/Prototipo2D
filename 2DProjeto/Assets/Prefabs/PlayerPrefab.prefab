@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfbf5d4343bbd84081f42df7045e472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 5735734724062541763}
   powers:
   - doublejump
   - dash
@@ -444,8 +444,9 @@ MonoBehaviour:
   - swap
   - slowdown
   currentPower: 0
-  doubleJumpForce: 1
-  doubleJumpCD: 0
+  doubleJumpForce: 7
+  doubleJumpTime: 5
+  doubleJumpCDactive: 0
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0

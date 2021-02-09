@@ -14,9 +14,9 @@ public class powerBook : MonoBehaviour
 
     [Header("DoubleJump")]    
     public float doubleJumpForce;
-    public float doubleJumpCD;
-   
-   
+    private float doubleJumpCD;
+    public float doubleJumpTime;
+    public bool doubleJumpCDactive;
 
     void Start()
     {
@@ -25,15 +25,30 @@ public class powerBook : MonoBehaviour
         Debug.Log(powers[currentPower]);
     }
 
-  
+    void Update()
+    {
+        if (doubleJumpCDactive)
+        {
+            doubleJumpCD -= Time.deltaTime;
+            if (doubleJumpCD <= 0)
+            {
+                doubleJumpCD = doubleJumpTime;
+                doubleJumpCDactive = false;
+            }
+        }
+    }
 
     public void DoubleJump()
     {
-        
+        if(doubleJumpCDactive == false)
+        {
             Debug.Log("doubleJump");
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
-        
+            doubleJumpCDactive = true;
+        }  
     }
+
     public void Stomp()
     {
         Debug.Log("Stomp");
