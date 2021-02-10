@@ -93,10 +93,16 @@ public class powerBook : MonoBehaviour
                 endStomp = true;
             }
         }
-        
 
-        
-       
+
+        //Double Jump
+        if (rb.velocity.y < 0 && doubleJumpCDactive)
+        {
+            gameObject.GetComponent<PlayerController>().physicsAllow = true;
+
+        }
+
+
 
 
         // DASH
@@ -148,6 +154,7 @@ public class powerBook : MonoBehaviour
         if(doubleJumpCDactive == false)
         {
             Debug.Log("doubleJump");
+            gameObject.GetComponent<PlayerController>().physicsAllow = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
             doubleJumpCDactive = true;

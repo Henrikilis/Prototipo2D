@@ -1661,6 +1661,7 @@ MonoBehaviour:
   lowFallMultiplier: 2
   jumpDelay: 0.25
   gravity: 1
+  physicsAllow: 0
   isGrounded: 0
   dashSpeed: 5
   startDashTime: 0.2

@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     public float jumpDelay;
     private float futureJump;
     public float gravity = 1f;
-    
 
+    public bool physicsAllow;
     private float inputX;
     public bool isGrounded;
 
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         dashTime = startDashTime;
+        physicsAllow = true;
     }
 
     private void Update()
@@ -120,19 +121,21 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Idle", true);
         else { anim.SetBool("Idle", false); }
 
-        
+
         // FISICA DO PULO
 
-        if (rb.velocity.y < 0)
+        if (physicsAllow)
         {
-            
-            rb.gravityScale = gravity * (lowFallMultiplier / 2);
-        }
-        else if(rb.velocity.y > 0 && !Gamepad.current.buttonSouth.isPressed)
-        {
-            rb.gravityScale = gravity * lowFallMultiplier ;
-        }
+            if (rb.velocity.y < 0)
+            {
 
+                rb.gravityScale = gravity * (lowFallMultiplier / 2);
+            }
+            else if (rb.velocity.y > 0 && !Gamepad.current.buttonSouth.isPressed)
+            {
+                rb.gravityScale = gravity * lowFallMultiplier;
+            }
+        }
         // PULO
         if (futureJump > Time.time && isGrounded)
         {   
