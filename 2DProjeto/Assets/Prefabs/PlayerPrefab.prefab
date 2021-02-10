@@ -405,6 +405,7 @@ MonoBehaviour:
   dontMove: 0
   damageCooldown: 0
   anim: {fileID: 2944259358398163278}
+  hp: {fileID: 0}
 --- !u!95 &2944259358398163278
 Animator:
   serializedVersion: 3
@@ -445,17 +446,17 @@ MonoBehaviour:
   - swap
   - slowdown
   currentPower: 0
-  doubleJumpForce: 7
+  doubleJumpForce: 8
   doubleJumpTime: 5
   doubleJumpCDactive: 0
-  dashSpeed: 7
+  dashSpeed: 8
   startDashTime: 0.3
   dashPressed: 0
   dashCDTime: 6
   dashCDactive: 0
-  stompSpeed: 4
+  stompSpeed: 11
   stompDuration: 0
-  stompCDActive: 0
+  endStomp: 1
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0

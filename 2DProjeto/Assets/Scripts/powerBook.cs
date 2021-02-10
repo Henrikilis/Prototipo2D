@@ -34,6 +34,8 @@ public class powerBook : MonoBehaviour
     [SerializeField]
     private float stompDuration;
     private bool isStomping = false;
+    [SerializeField]
+    private bool endStomp = true;
 
     void Start()
     {
@@ -74,14 +76,26 @@ public class powerBook : MonoBehaviour
             stompDuration += Time.deltaTime;
             
         }
-        else
-        {
-            
+        else   
+        {         
             isStomping = false;
-
         }
-           
+        
+        
+        if(!isStomping && !endStomp && stompDuration > 0)
+        {
+            stompDuration -= Time.deltaTime;
 
+            if(stompDuration  <= 0)
+            {
+                stompDuration = 0;
+                gameObject.GetComponent<PlayerHealth>().dontMove = false;
+                endStomp = true;
+            }
+        }
+        
+
+        
        
 
 
@@ -145,9 +159,10 @@ public class powerBook : MonoBehaviour
        
         if (!GetComponent<PlayerController>().isGrounded && doubleJumpCDactive == false)
         {
+            endStomp = false;
             stompDuration = 0;
             isStomping = true;
-            // gameObject.GetComponent<PlayerHealth>().dontMove = true;
+            gameObject.GetComponent<PlayerHealth>().dontMove = true;
             rb.velocity = new Vector2(0, 0);
             rb.AddForce(Vector2.down * stompSpeed, ForceMode2D.Impulse);
             
