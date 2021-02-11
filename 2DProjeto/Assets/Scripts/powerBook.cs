@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class powerBook : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class powerBook : MonoBehaviour
     [SerializeField]
     private int currentPower;
 
+    [Header("UI")]
+    public GameObject[] pages;
 
     [Header("DoubleJump")]    
     public float doubleJumpForce;
     private float doubleJumpCD;
     public float doubleJumpTime;
     public bool doubleJumpCDactive;
+    public Component[] doubleComponent;
 
     [Header("Dash")]
     public float dashSpeed;
@@ -27,6 +31,7 @@ public class powerBook : MonoBehaviour
     private float dashCD;
     public float dashCDTime;
     public bool dashCDactive;
+    public Component[] dashComponent;
 
     [Header("Stomp")]
 
@@ -43,6 +48,19 @@ public class powerBook : MonoBehaviour
         currentPower = 0;
         Debug.Log(powers[currentPower]);
         dashTime = startDashTime;
+
+        // CONFIGURANDO REFERENCIAS
+        pages[0] = GameObject.Find("Page Jump");
+        pages[1] = GameObject.Find("Page Dash");
+        pages[2] = GameObject.Find("Page Shield");
+        pages[3] = GameObject.Find("Page Dimension");
+        pages[4] = GameObject.Find("Page Time");
+        doubleComponent = pages[0].GetComponentsInChildren<Slider>();
+        dashComponent = pages[1].GetComponentsInChildren<Slider>();
+        pages[1].SetActive(false);
+        pages[2].SetActive(false);
+        pages[3].SetActive(false);
+        pages[4].SetActive(false);
     }
 
     void Update()
@@ -51,6 +69,8 @@ public class powerBook : MonoBehaviour
         if (doubleJumpCDactive)
         {
             doubleJumpCD -= Time.deltaTime;
+            foreach (Slider slider in doubleComponent)
+                slider.value = doubleJumpTime - doubleJumpCD;
             if (doubleJumpCD <= 0)
             {
                 doubleJumpCD = doubleJumpTime;
@@ -60,6 +80,8 @@ public class powerBook : MonoBehaviour
         if (dashCDactive)
         {
             dashCD -= Time.deltaTime;
+            foreach (Slider slider in dashComponent)
+                slider.value = dashCDTime - dashCD;
             if (dashCD <= 0)
             {
                 dashCD = dashCDTime;
@@ -248,7 +270,7 @@ public class powerBook : MonoBehaviour
     {
         if (context.performed) {
 
-
+            pages[currentPower].SetActive(false);
             if (ArrayCheckMinus(currentPower))
             {
                 currentPower = powers.Length - 1;
@@ -260,14 +282,16 @@ public class powerBook : MonoBehaviour
                 currentPower--;
                 Debug.Log(powers[currentPower]);
             }
+            pages[currentPower].SetActive(true);
         }
     }
 
     public void SwapRight(InputAction.CallbackContext context)
     {
+        
         if (context.performed)
         {
-
+            pages[currentPower].SetActive(false);
             if (ArrayCheckPlus(currentPower))
             {
                 currentPower = 0;
@@ -278,7 +302,9 @@ public class powerBook : MonoBehaviour
                 currentPower++;
                 Debug.Log(powers[currentPower]);
             }
+            pages[currentPower].SetActive(true);
         }
+        
     }
 
     public void Power1(InputAction.CallbackContext context)

@@ -443,11 +443,16 @@ MonoBehaviour:
   powers:
   - doublejump
   - dash
-  - deflect
   - shield
   - swap
   - slowdown
   currentPower: 0
+  pages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   doubleJumpForce: 8
   doubleJumpTime: 5
   doubleJumpCDactive: 0
