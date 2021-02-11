@@ -27,7 +27,13 @@ public class Smashable : MonoBehaviour
             gameObject.layer = 13;
         }
 
-        if(other.GetComponent<Rigidbody2D>().velocity.y < 0)
+        if (other.gameObject.CompareTag("shield"))
+        {
+            anim.SetTrigger("Dead");
+            gameObject.layer = 13;
+        }
+
+        if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(other.GetComponent<Rigidbody2D>().velocity.x, 0);
             other.GetComponent<Rigidbody2D>().AddForce(Vector2.up * stompJumpForce, ForceMode2D.Impulse);
