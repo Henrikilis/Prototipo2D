@@ -22,6 +22,15 @@ public class powerBook : MonoBehaviour
     public bool doubleJumpCDactive;
     public Component[] doubleComponent;
 
+    [Header("Stomp")]
+
+    public float stompSpeed;
+    [SerializeField]
+    private float stompDuration;
+    private bool isStomping = false;
+    [SerializeField]
+    private bool endStomp = true;
+
     [Header("Dash")]
     public float dashSpeed;
     private float dashTime;
@@ -32,17 +41,16 @@ public class powerBook : MonoBehaviour
     public float dashCDTime;
     public bool dashCDactive;
     public Component[] dashComponent;
+   
+    [Header("Shield")]
+    public GameObject shield;
+    public float shieldTime;
 
-    public bool upDashPressed;
-
-    [Header("Stomp")]
-
-    public float stompSpeed;
-    [SerializeField]
-    private float stompDuration;
-    private bool isStomping = false;
-    [SerializeField]
-    private bool endStomp = true;
+    public float shieldCDtime;
+    private float shieldDuration;
+    private float shieldCD;
+    private bool shieldCDactive;
+    public Component[] shieldComponent;
 
     void Start()
     {
@@ -50,6 +58,7 @@ public class powerBook : MonoBehaviour
         currentPower = 0;
         Debug.Log(powers[currentPower]);
         dashTime = startDashTime;
+        shield.gameObject.SetActive(false);
 
         // CONFIGURANDO REFERENCIAS
         pages[0] = GameObject.Find("Page Jump");
@@ -59,6 +68,7 @@ public class powerBook : MonoBehaviour
         pages[4] = GameObject.Find("Page Time");
         doubleComponent = pages[0].GetComponentsInChildren<Slider>();
         dashComponent = pages[1].GetComponentsInChildren<Slider>();
+        shieldComponent = pages[2].GetComponentsInChildren<Slider>();
         pages[1].SetActive(false);
         pages[2].SetActive(false);
         pages[3].SetActive(false);
@@ -126,7 +136,29 @@ public class powerBook : MonoBehaviour
 
         }
 
+        // SHIELD
+        if (shieldCDactive)
+        {
+            shieldDuration -= Time.deltaTime;
+            shieldCD -= Time.deltaTime;
 
+            foreach (Slider slider in shieldComponent)
+                slider.value = shieldCDtime - shieldCD;
+
+            if (shieldDuration <= 0)
+            {
+                shield.gameObject.SetActive(false);
+               
+            }
+
+            if (shieldCD <= 0)
+            {
+                shieldCDactive = false;
+                shieldDuration = shieldTime;
+                shieldCD = shieldCDtime;
+            }
+
+        }
 
 
         // DASH
@@ -168,25 +200,6 @@ public class powerBook : MonoBehaviour
                     rb.velocity = Vector2.right * dashSpeed;
                     Debug.Log("DIREITA");
                 }
-            }
-        }
-
-        // UP DASH
-        if (upDashPressed)
-        {
-            if (dashTime <= 0)
-            {
-                direction = 0;
-                dashTime = startDashTime;
-                rb.velocity = Vector2.zero;
-                upDashPressed = false;
-                gameObject.GetComponent<PlayerHealth>().dontMove = false;
-            }
-            else
-            {
-                dashTime -= Time.deltaTime;
-
-                rb.velocity = Vector2.up * dashSpeed;
             }
         }
     }
@@ -235,29 +248,17 @@ public class powerBook : MonoBehaviour
 
     public void DashU()
     {
-        if (dashCDactive == false)
-        {
-            Debug.Log("DashUp");
-            gameObject.GetComponent<PlayerHealth>().dontMove = true;
-            upDashPressed = true;
-            dashCDactive = true;
-        }
-    }
-
-    public void Deflect()
-    {
-
-
-    }
-
-    public void Throw()
-    {
-
+        Debug.Log("DashUp");
 
     }
 
     public void Shield()
     {
+        if (!shieldCDactive)
+        {
+            shield.gameObject.SetActive(true);
+            shieldCDactive = true;
+        }
 
 
     }
@@ -340,12 +341,14 @@ public class powerBook : MonoBehaviour
             if(powers[currentPower] == "doublejump")
             {
                 DoubleJump();
-
             }
             else if(powers[currentPower] == "dash")
             {
-
                 DashF();
+            }
+            else if (powers[currentPower] == "shield")
+            {
+                Circle();
             }
 
 
@@ -361,12 +364,14 @@ public class powerBook : MonoBehaviour
             if (powers[currentPower].ToString() == "doublejump")
             {
                 Stomp();
-
             }
             else if (powers[currentPower] == "dash")
             {
-
                 DashU();
+            }
+            else if (powers[currentPower] == "shield")
+            {
+                Shield();
             }
 
 
