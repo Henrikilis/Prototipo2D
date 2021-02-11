@@ -37,6 +37,7 @@ public class powerBook : MonoBehaviour
     public float startDashTime;
     private int direction;
     public bool dashPressed;
+    public bool upDashPressed;
     private float dashCD;
     public float dashCDTime;
     public bool dashCDactive;
@@ -202,6 +203,29 @@ public class powerBook : MonoBehaviour
                 }
             }
         }
+
+        // UP DASH
+        if (upDashPressed)
+        {
+            if (dashTime <= 0)
+            {
+                direction = 0;
+                dashTime = startDashTime;
+                rb.velocity = Vector2.zero;
+                upDashPressed = false;
+                gameObject.GetComponent<PlayerHealth>().dontMove = false;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+
+                rb.velocity = Vector2.up * dashSpeed;
+            }
+        }
+
+
+
+
     }
 
 
@@ -248,8 +272,13 @@ public class powerBook : MonoBehaviour
 
     public void DashU()
     {
-        Debug.Log("DashUp");
-
+        if (dashCDactive == false)
+        {
+            Debug.Log("DashUp");
+            gameObject.GetComponent<PlayerHealth>().dontMove = true;
+            upDashPressed = true;
+            dashCDactive = true;
+        }
     }
 
     public void Shield()
