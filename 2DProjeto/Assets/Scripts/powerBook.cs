@@ -53,6 +53,9 @@ public class powerBook : MonoBehaviour
     private bool shieldCDactive;
     public Component[] shieldComponent;
 
+    [Header("Dimension")]
+    public bool swapSelected;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -222,10 +225,6 @@ public class powerBook : MonoBehaviour
                 rb.velocity = Vector2.up * dashSpeed;
             }
         }
-
-
-
-
     }
 
 
@@ -298,16 +297,11 @@ public class powerBook : MonoBehaviour
 
     }
 
-    public void SwapBlue()
+    public void DimensionSwap()
     {
-
-
-    }
-
-    public void SwapRed()
-    {
-
-
+        if (currentPower == 3)
+            swapSelected = true;
+        else swapSelected = false;
     }
 
     public void SlowDown()
@@ -339,6 +333,7 @@ public class powerBook : MonoBehaviour
                 Debug.Log(powers[currentPower]);
             }
             pages[currentPower].SetActive(true);
+            DimensionSwap();
         }
     }
 
@@ -359,6 +354,7 @@ public class powerBook : MonoBehaviour
                 Debug.Log(powers[currentPower]);
             }
             pages[currentPower].SetActive(true);
+            DimensionSwap();
         }
         
     }
@@ -402,8 +398,6 @@ public class powerBook : MonoBehaviour
             {
                 Shield();
             }
-
-
         }
     }
 
