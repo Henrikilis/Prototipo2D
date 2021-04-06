@@ -53,6 +53,11 @@ public class powerBook : MonoBehaviour
     private bool shieldCDactive;
     public Component[] shieldComponent;
 
+    [Header("Intangibility")]
+    private float intTime;
+    public float startIntTime;
+    public bool intPressed;
+
     [Header("Dimension")]
     public bool swapSelected;
 
@@ -63,6 +68,7 @@ public class powerBook : MonoBehaviour
         Debug.Log(powers[currentPower]);
         dashTime = startDashTime;
         shield.gameObject.SetActive(false);
+        intTime = startIntTime;
 
         // CONFIGURANDO REFERENCIAS
         pages[0] = GameObject.Find("Page Jump");
@@ -225,6 +231,21 @@ public class powerBook : MonoBehaviour
                 rb.velocity = Vector2.up * dashSpeed;
             }
         }
+
+        // INTANGIBLE
+        if(intPressed)
+        {
+            if (intTime <= 0)
+            {
+                intTime = startIntTime;
+                intPressed = false;
+                gameObject.layer = 9;
+            }
+            else
+            {
+                intTime -= Time.deltaTime;
+            }
+        }
     }
 
 
@@ -297,6 +318,15 @@ public class powerBook : MonoBehaviour
 
     }
 
+    public void Intangible()
+    {
+        //if (dashCDactive == false)
+        //{
+            Debug.Log("Going Intangible");
+            intPressed = true;
+            gameObject.layer = 11;
+        //}
+    }
     public void DimensionSwap()
     {
         if (currentPower == 3)
@@ -375,7 +405,7 @@ public class powerBook : MonoBehaviour
             {
                 Circle();
             }
-
+            
 
         }
 
@@ -386,7 +416,7 @@ public class powerBook : MonoBehaviour
     {
         if (context.performed)
         {
-            if (powers[currentPower].ToString() == "doublejump")
+            if (powers[currentPower] == "doublejump")
             {
                 Stomp();
             }
@@ -397,6 +427,10 @@ public class powerBook : MonoBehaviour
             else if (powers[currentPower] == "shield")
             {
                 Shield();
+            }
+            else if (powers[currentPower] == "swap")
+            {
+                Intangible();
             }
         }
     }
