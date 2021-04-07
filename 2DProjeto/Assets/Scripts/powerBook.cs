@@ -57,6 +57,13 @@ public class powerBook : MonoBehaviour
     private float intTime;
     public float startIntTime;
     public bool intPressed;
+    private float intCD;
+    public float intCDTime;
+    public bool intCDactive;
+    public Component[] intComponent;
+    public SpriteRenderer sr;
+    public Color phasedColor;
+    public Color unphasedColor;
 
     [Header("Dimension")]
     public bool swapSelected;
@@ -69,6 +76,7 @@ public class powerBook : MonoBehaviour
         dashTime = startDashTime;
         shield.gameObject.SetActive(false);
         intTime = startIntTime;
+        sr = GetComponent<SpriteRenderer>();
 
         // CONFIGURANDO REFERENCIAS
         pages[0] = GameObject.Find("Page Jump");
@@ -79,6 +87,7 @@ public class powerBook : MonoBehaviour
         doubleComponent = pages[0].GetComponentsInChildren<Slider>();
         dashComponent = pages[1].GetComponentsInChildren<Slider>();
         shieldComponent = pages[2].GetComponentsInChildren<Slider>();
+        intComponent = pages[3].GetComponentsInChildren<Slider>();
         pages[1].SetActive(false);
         pages[2].SetActive(false);
         pages[3].SetActive(false);
@@ -110,9 +119,20 @@ public class powerBook : MonoBehaviour
                 dashCDactive = false;
             }
         }
+        if (intCDactive)
+        {
+            intCD -= Time.deltaTime;
+            foreach (Slider slider in intComponent)
+                slider.value = intCDTime - intCD;
+            if (intCD <= 0)
+            {
+                intCD = intCDTime;
+                intCDactive = false;
+            }
+        }
 
 
-   
+
         // STOMP
 
         if (rb.velocity.y < 0 && isStomping)
@@ -240,6 +260,7 @@ public class powerBook : MonoBehaviour
                 intTime = startIntTime;
                 intPressed = false;
                 gameObject.layer = 9;
+                sr.color = phasedColor;
             }
             else
             {
@@ -320,12 +341,14 @@ public class powerBook : MonoBehaviour
 
     public void Intangible()
     {
-        //if (dashCDactive == false)
-        //{
+        if (intCDactive == false)
+        {
             Debug.Log("Going Intangible");
             intPressed = true;
             gameObject.layer = 11;
-        //}
+            intCDactive = true;
+            sr.color = unphasedColor;
+        }
     }
     public void DimensionSwap()
     {

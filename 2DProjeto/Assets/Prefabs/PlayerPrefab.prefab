@@ -463,6 +463,7 @@ MonoBehaviour:
   dashSpeed: 8
   startDashTime: 0.3
   dashPressed: 0
+  upDashPressed: 0
   dashCDTime: 6
   dashCDactive: 0
   dashComponent: []
@@ -470,6 +471,15 @@ MonoBehaviour:
   shieldTime: 2
   shieldCDtime: 5
   shieldComponent: []
+  startIntTime: 0
+  intPressed: 0
+  intCDTime: 0
+  intCDactive: 0
+  intComponent: []
+  sr: {fileID: 0}
+  phasedColor: {r: 1, g: 1, b: 1, a: 1}
+  unphasedColor: {r: 0, g: 0, b: 1, a: 0.5019608}
+  swapSelected: 0
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0
