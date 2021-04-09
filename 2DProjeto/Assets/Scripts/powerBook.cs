@@ -53,6 +53,11 @@ public class powerBook : MonoBehaviour
     private bool shieldCDactive;
     public Component[] shieldComponent;
 
+    [Header("circle")]
+    public Rigidbody2D srb;
+    public bool circleActive = false;
+    
+
     [Header("Intangibility")]
     private float intTime;
     public float startIntTime;
@@ -131,6 +136,28 @@ public class powerBook : MonoBehaviour
             }
         }
 
+        if (shieldCDactive)
+        {
+            shieldDuration -= Time.deltaTime;
+            shieldCD -= Time.deltaTime;
+
+            foreach (Slider slider in shieldComponent)
+                slider.value = shieldCDtime - shieldCD;
+
+            if (shieldDuration <= 0)
+            {
+                shield.gameObject.SetActive(false);
+
+            }
+
+            if (shieldCD <= 0)
+            {
+                shieldCDactive = false;
+                shieldDuration = shieldTime;
+                shieldCD = shieldCDtime;
+            }
+
+        }
 
 
         // STOMP
@@ -165,31 +192,6 @@ public class powerBook : MonoBehaviour
             gameObject.GetComponent<PlayerController>().physicsAllow = true;
 
         }
-
-        // SHIELD
-        if (shieldCDactive)
-        {
-            shieldDuration -= Time.deltaTime;
-            shieldCD -= Time.deltaTime;
-
-            foreach (Slider slider in shieldComponent)
-                slider.value = shieldCDtime - shieldCD;
-
-            if (shieldDuration <= 0)
-            {
-                shield.gameObject.SetActive(false);
-               
-            }
-
-            if (shieldCD <= 0)
-            {
-                shieldCDactive = false;
-                shieldDuration = shieldTime;
-                shieldCD = shieldCDtime;
-            }
-
-        }
-
 
         // DASH
         if (direction == 0)
@@ -326,7 +328,11 @@ public class powerBook : MonoBehaviour
     {
         if (!shieldCDactive)
         {
-            shield.gameObject.SetActive(true);
+            shield.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            circleActive = false;
+            shield.gameObject.transform.SetParent(GetComponent<Transform>());
+            shield.transform.position = GetComponentInParent<Transform>().position;
+            shield.gameObject.SetActive(true);            
             shieldCDactive = true;
         }
 
@@ -335,7 +341,15 @@ public class powerBook : MonoBehaviour
 
     public void Circle()
     {
-
+        if (!shieldCDactive)
+        {
+            shield.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            shield.gameObject.SetActive(true);
+            shield.transform.position = GetComponentInParent<Transform>().position;
+            shield.gameObject.transform.SetParent(null);
+            circleActive = true;
+            shieldCDactive = true;
+        }
 
     }
 
