@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public Animator anim;
     public GameObject hp;
 
+    public GameObject checkPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,16 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(Knockback(other));
             UIdamage();
         }
+        if (other.gameObject.CompareTag("Spike"))
+        {
+            anim.SetTrigger("Hurt");
+            Debug.Log("ME ESPETEI");
+            currentHealth--;
+            //Knockback
+            //checkPoint = other.gameObject.GetComponent<SpikeSaw>().checkPoint;
+            StartCoroutine(SpikeTeleport(other));
+            UIdamage();
+        }
     }
     void OnTriggerStay2D(Collider2D other)
     {
@@ -51,6 +63,13 @@ public class PlayerHealth : MonoBehaviour
             //Knockback
             StartCoroutine(KnockbackT(other));
             UIdamage();
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Spike"))
+        {
+            checkPoint = other.gameObject;
         }
     }
 
@@ -79,6 +98,23 @@ public class PlayerHealth : MonoBehaviour
         dontMove = false;
         gameObject.GetComponent<PlayerController>().moveSpeed = 3;
         damageCooldown = false;
+        gameObject.layer = 9;
+    }
+    IEnumerator SpikeTeleport(Collision2D other)
+    {
+        gameObject.layer = 11;
+        dontMove = true;
+        gameObject.GetComponent<PlayerController>().moveSpeed = 0;
+        Vector2 direction = (transform.position - other.transform.position).normalized;
+        rb.AddForce(direction * 100);
+        rb.velocity = new Vector2(rb.velocity.x, 3);
+        yield return new WaitForSeconds(0.5f);
+        transform.position = checkPoint.transform.position;
+        gameObject.GetComponent<PlayerController>().moveSpeed = 0;
+        rb.velocity = new Vector2(0, 0);
+        yield return new WaitForSeconds(1);
+        dontMove = false;
+        gameObject.GetComponent<PlayerController>().moveSpeed = 5;
         gameObject.layer = 9;
     }
 
