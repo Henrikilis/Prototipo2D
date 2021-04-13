@@ -187,7 +187,7 @@ public class powerBook : MonoBehaviour
 
 
         //Double Jump
-        if (rb.velocity.y < 0 && doubleJumpCDactive)
+        if (gameObject.GetComponent<PlayerController>().isGrounded)
         {
             gameObject.GetComponent<PlayerController>().physicsAllow = true;
 
@@ -248,8 +248,8 @@ public class powerBook : MonoBehaviour
             }
             else
             {
+                gameObject.GetComponent<PlayerController>().physicsAllow = false;
                 dashTime -= Time.deltaTime;
-
                 rb.velocity = Vector2.up * dashSpeed;
             }
         }
@@ -276,7 +276,6 @@ public class powerBook : MonoBehaviour
     {
         if(doubleJumpCDactive == false)
         {
-            Debug.Log("doubleJump");
             gameObject.GetComponent<PlayerController>().physicsAllow = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);

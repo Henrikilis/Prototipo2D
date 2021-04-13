@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public float lowFallMultiplier;
 
     public float jumpDelay;
+    [SerializeField]
+    private float afterJump;
+    private float afterPress = 50;
     private float futureJump;
     public float gravity = 1f;
 
@@ -47,6 +50,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+      
+
         // FLIP
         if(inputX > 0)
         {
@@ -111,7 +117,15 @@ public class PlayerController : MonoBehaviour
  
     private void FixedUpdate()
     {
-       // MOVIMENTO BASICO
+
+        if (!isGrounded)
+        {
+            afterJump = afterJump + 1;
+        }
+        if (isGrounded)
+            afterJump = 0;
+
+        // MOVIMENTO BASICO
         if (gameObject.GetComponent<PlayerHealth>().dontMove == false)
          rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
 
@@ -137,10 +151,11 @@ public class PlayerController : MonoBehaviour
             }
         }
         // PULO
-        if (futureJump > Time.time && isGrounded)
-        {   
+        if (afterPress < 5 || futureJump > Time.time && isGrounded)
+        {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * initialJumpForce, ForceMode2D.Impulse);
+            afterPress = 50;
             futureJump = 0;
 
         }
@@ -168,6 +183,7 @@ public class PlayerController : MonoBehaviour
         //    pressed = true;
         if (context.performed)
         {
+            afterPress = afterJump;
             futureJump = Time.time + jumpDelay;
             anim.SetTrigger("Jump");
         }
