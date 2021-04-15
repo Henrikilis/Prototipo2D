@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,12 +41,19 @@ public class PlayerController : MonoBehaviour
     public bool facingRight;
 
     public Vector2 boxSize;
-   
+
+    [Header("Camera")]
+    public CinemachineVirtualCamera vcam;
+    public GameObject downCam;
+    public GameObject regularCam;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         dashTime = startDashTime;
         physicsAllow = true;
+
+        vcam = GameObject.Find("vcam").gameObject.GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Update()
@@ -186,6 +194,20 @@ public class PlayerController : MonoBehaviour
             afterPress = afterJump;
             futureJump = Time.time + jumpDelay;
             anim.SetTrigger("Jump");
+        }
+    }
+
+    public void LookDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("OLHEI PARA BAIXO");
+            downCam.SetActive(true);
+            regularCam.SetActive(false);
+        }
+        else { Debug.Log("DESOLHEI");
+            downCam.SetActive(false);
+            regularCam.SetActive(true);
         }
     }
 
