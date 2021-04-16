@@ -368,6 +368,7 @@ MonoBehaviour:
   initialJumpForce: 8
   lowFallMultiplier: 1.5
   jumpDelay: 0.25
+  afterJump: 0
   gravity: 1
   physicsAllow: 0
   isGrounded: 0
@@ -408,6 +409,7 @@ MonoBehaviour:
   damageCooldown: 0
   anim: {fileID: 2944259358398163278}
   hp: {fileID: 0}
+  checkPoint: {fileID: 0}
 --- !u!95 &2944259358398163278
 Animator:
   serializedVersion: 3
@@ -603,6 +605,7 @@ GameObject:
   - component: {fileID: 5913872338339339501}
   - component: {fileID: 342962763}
   - component: {fileID: 8940378752357923214}
+  - component: {fileID: 1596051128}
   m_Layer: 9
   m_Name: Shield
   m_TagString: shield
@@ -709,16 +712,31 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6940802256966265089}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &1596051128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940802256966265089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2347a9aa00e7446980e456464c0b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  pb: {fileID: 0}
+  pc: {fileID: 0}
