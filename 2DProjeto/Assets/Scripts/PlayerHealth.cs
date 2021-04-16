@@ -83,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 3);
         yield return new WaitForSeconds(0.5f);
         dontMove = false;
-        gameObject.GetComponent<PlayerController>().moveSpeed = 3;
+        gameObject.GetComponent<PlayerController>().moveSpeed = gameObject.GetComponent<PlayerController>().normalSpeed;
         gameObject.layer = 9;
     }
     IEnumerator KnockbackT(Collider2D other)
@@ -96,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 3);
         yield return new WaitForSeconds(0.5f);
         dontMove = false;
-        gameObject.GetComponent<PlayerController>().moveSpeed = 3;
+        gameObject.GetComponent<PlayerController>().moveSpeed = gameObject.GetComponent<PlayerController>().normalSpeed;
         damageCooldown = false;
         gameObject.layer = 9;
     }
@@ -114,7 +114,7 @@ public class PlayerHealth : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(1);
         dontMove = false;
-        gameObject.GetComponent<PlayerController>().moveSpeed = 5;
+        gameObject.GetComponent<PlayerController>().moveSpeed = gameObject.GetComponent<PlayerController>().normalSpeed;
         gameObject.layer = 9;
     }
 

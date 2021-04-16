@@ -310,6 +310,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4339ad24-dfef-453b-9ceb-c641a150c5bb
     m_ActionName: Player/LookDown[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5735734724062541760}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: LookUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76bac1a9-bfb4-44d8-a7d6-372e48aa9761
+    m_ActionName: Player/LookUp[/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -379,6 +395,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   rb: {fileID: 0}
+  normalSpeed: 5
   moveSpeed: 5
   anim: {fileID: 2944259358398163278}
   initialJumpForce: 8

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     public Rigidbody2D rb;
 
+    public float normalSpeed;
     public float moveSpeed;
 
     public Animator anim;
@@ -46,6 +47,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         dashTime = startDashTime;
         physicsAllow = true;
+
+        moveSpeed = normalSpeed;
     }
 
     private void Update()
