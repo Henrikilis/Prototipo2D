@@ -294,6 +294,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 44820ca3-6457-4f5a-825b-fef538646dcf
     m_ActionName: Player/Power2[/DualShock4GamepadHID/leftTrigger,/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5735734724062541760}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: LookDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4339ad24-dfef-453b-9ceb-c641a150c5bb
+    m_ActionName: Player/LookDown[/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
