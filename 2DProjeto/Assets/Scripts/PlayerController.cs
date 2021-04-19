@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         //    pressed = true;
-        if (context.performed)
+        if (context.performed && gameObject.GetComponent<PlayerHealth>().dontMove == false)
         {
             afterPress = afterJump;
             futureJump = Time.time + jumpDelay;
@@ -198,9 +198,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("OLHEI PARA BAIXO");
             anim.SetBool("LookingDown", true);
+            gameObject.GetComponent<PlayerHealth>().dontMove = true;
         }
         else { Debug.Log("DESOLHEI");
             anim.SetBool("LookingDown", false);
+            gameObject.GetComponent<PlayerHealth>().dontMove = false;
         }
     }
     public void LookUp(InputAction.CallbackContext context)
@@ -209,11 +211,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("OLHEI PARA BAIXO");
             anim.SetBool("LookingUp", true);
+            gameObject.GetComponent<PlayerHealth>().dontMove = true;
         }
         else
         {
             Debug.Log("DESOLHEI");
             anim.SetBool("LookingUp", false);
+            gameObject.GetComponent<PlayerHealth>().dontMove = false;
         }
     }
 
