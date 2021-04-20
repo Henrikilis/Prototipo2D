@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2545930439768198938}
   - component: {fileID: 5462341366944305055}
   - component: {fileID: 3758320092189708373}
+  - component: {fileID: -6065007901821478478}
   m_Layer: 12
   m_Name: InimigoEstatico
   m_TagString: Enemy
@@ -149,7 +150,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,3 +278,42 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009999988, y: 0.16181724}
   m_Size: {x: 0.3000001, y: 0.072167166}
   m_Direction: 1
+--- !u!114 &-6065007901821478478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545930439768198939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000e179170e
+  m_ShapePath:
+  - {x: -0.13810384, y: 0.06841087, z: 0}
+  - {x: -0.10811424, y: 0.038105845, z: 0}
+  - {x: -0.10787475, y: -0.059224367, z: 0}
+  - {x: -0.077696204, y: -0.08011711, z: 0}
+  - {x: -0.077696204, y: -0.13583136, z: 0}
+  - {x: -0.059124827, y: -0.15440273, z: 0}
+  - {x: 0.06250441, y: -0.15393412, z: 0}
+  - {x: 0.066523075, y: -0.12004542, z: 0}
+  - {x: 0.0787164, y: -0.07348931, z: 0}
+  - {x: 0.097560525, y: -0.035800934, z: 0}
+  - {x: 0.09866917, y: 0.009646773, z: 0}
+  - {x: 0.06722915, y: 0.0444113, z: 0}
+  - {x: 0.09028947, y: 0.062347174, z: 0}
+  - {x: 0.09370506, y: 0.07857442, z: 0}
+  - {x: 0.06210375, y: 0.09223986, z: 0}
+  - {x: 0.039405942, y: 0.12025976, z: 0}
+  - {x: -0.08732462, y: 0.12025046, z: 0}
+  m_ShapePathHash: -109358841
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -31762
