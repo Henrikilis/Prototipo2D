@@ -52,3 +52,6 @@ TagManager:
   - name: Player
     uniqueID: 4204359939
     locked: 0
+  - name: PrimeiroPlano
+    uniqueID: 3874307431
+    locked: 0
