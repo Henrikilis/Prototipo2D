@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.7072327, b: 0.43867922, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000e179170e037199fa
+  m_ApplyToSortingLayers: e179170e037199fa673dede6
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 1
@@ -694,7 +694,7 @@ MonoBehaviour:
   - {x: -0.03984046, y: 0.10158515, z: 0}
   m_ShapePathHash: 1274117965
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1704
+  m_InstanceId: -1728
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b58f3baf5adefdb4eb7b65044ea2e126, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

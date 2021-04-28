@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 236419553
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2538710101d0f1f4e8976b3495cd1f75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -128,6 +128,7 @@ MonoBehaviour:
   phasedColor: {r: 1, g: 1, b: 1, a: 1}
   unphasedColor: {r: 0, g: 0, b: 1, a: 0.5019608}
   isCooling: 0
+  player: {fileID: 0}
 --- !u!114 &1253958254062909163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +246,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 714c76d0-42eb-42a6-8750-e2478f4690bf
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4339ad24-dfef-453b-9ceb-c641a150c5bb
+    m_ActionName: Player/LookDown[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 76bac1a9-bfb4-44d8-a7d6-372e48aa9761
+    m_ActionName: Player/LookUp[/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
