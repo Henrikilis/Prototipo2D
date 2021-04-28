@@ -8,8 +8,8 @@ public class EnemyAI : MonoBehaviour
 
     public Transform target;
 
-    public float speed = 200;
-    public float nxtwaypointdistance = 0.1f;
+    public float speed;
+    public float nxtwaypointdistance;
 
     Path path;
     int currentWaypoint = 0;
