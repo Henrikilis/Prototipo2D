@@ -7,6 +7,8 @@ using Debug = UnityEngine.Debug;
 public class DimensionalRune : MonoBehaviour
 {
     public DimensionSwap[] swapables;
+    public GameObject specialBlock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class DimensionalRune : MonoBehaviour
             if (target.phased)
                 target.On();
             else target.Off();
+            specialBlock.GetComponent<DimensionSwap>().On();
         }
         StartCoroutine(Swap());
     }
