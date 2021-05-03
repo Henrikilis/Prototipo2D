@@ -42,6 +42,7 @@ public class powerBook : MonoBehaviour
     public float dashCDTime;
     public bool dashCDactive;
     public Component[] dashComponent;
+    public GameObject dashParticle;
    
     [Header("Shield")]
     public GameObject shield;
@@ -220,6 +221,7 @@ public class powerBook : MonoBehaviour
             }
             else
             {
+                Instantiate(dashParticle, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
                 dashTime -= Time.deltaTime;
 
                 if (direction == 1)
@@ -248,6 +250,7 @@ public class powerBook : MonoBehaviour
             }
             else
             {
+                Instantiate(dashParticle, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
                 gameObject.GetComponent<PlayerController>().physicsAllow = false;
                 dashTime -= Time.deltaTime;
                 rb.velocity = Vector2.up * dashSpeed;

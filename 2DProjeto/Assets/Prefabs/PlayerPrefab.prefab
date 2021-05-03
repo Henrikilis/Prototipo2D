@@ -648,6 +648,7 @@ MonoBehaviour:
   dashCDTime: 6
   dashCDactive: 0
   dashComponent: []
+  dashParticle: {fileID: 3623350268746518420, guid: 98ab9eee84e2585448dacb9affb78c8c, type: 3}
   shield: {fileID: 6940802256966265089}
   shieldTime: 2
   shieldCDtime: 5
@@ -694,7 +695,7 @@ MonoBehaviour:
   - {x: -0.03984046, y: 0.10158515, z: 0}
   m_ShapePathHash: 1274117965
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1808
+  m_InstanceId: -106148
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0

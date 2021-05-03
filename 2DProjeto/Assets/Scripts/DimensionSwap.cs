@@ -12,6 +12,9 @@ public class DimensionSwap : MonoBehaviour
     public bool isCooling;
     public powerBook player;
 
+    public GameObject shadow;
+    public bool hasShadow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +42,15 @@ public class DimensionSwap : MonoBehaviour
     {
         sr.color = phasedColor;
         GetComponent<Collider2D>().isTrigger = false;
+        if(hasShadow)
+            shadow.SetActive(true);
     }
     public void Off()
     {
         sr.color = unphasedColor;
         GetComponent<Collider2D>().isTrigger = true;
+        if(hasShadow)
+            shadow.SetActive(false);
     }
     IEnumerator Cooldown()
     {
