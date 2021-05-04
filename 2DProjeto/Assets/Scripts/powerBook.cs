@@ -151,6 +151,7 @@ public class powerBook : MonoBehaviour
             if (shieldDuration <= 0)
             {
                 shield.gameObject.SetActive(false);
+                circleActive = false;
 
             }
 
@@ -358,6 +359,7 @@ public class powerBook : MonoBehaviour
             shield.gameObject.transform.SetParent(null);
             circleActive = true;
             shieldCDactive = true;
+            
         }
 
     }

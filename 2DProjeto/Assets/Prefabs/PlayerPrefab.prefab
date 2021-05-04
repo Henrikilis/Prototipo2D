@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfbf5d4343bbd84081f42df7045e472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   rb: {fileID: 5735734724062541763}
   powers:
   - doublejump
@@ -695,7 +696,7 @@ MonoBehaviour:
   - {x: -0.03984046, y: 0.10158515, z: 0}
   m_ShapePathHash: 1274117965
   m_Mesh: {fileID: 0}
-  m_InstanceId: -106148
+  m_InstanceId: -28528
 --- !u!1 &5735734724903159352
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +932,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -953,3 +954,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   pb: {fileID: 0}
   pc: {fileID: 0}
+  speed: 3
+  lockRight: 0
+  lockLeft: 0
