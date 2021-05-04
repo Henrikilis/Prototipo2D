@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class powerBook : MonoBehaviour
 {
+    public Animator anim;
+
     [Header("Powers")]
     public Rigidbody2D rb;
     public string[] powers;
@@ -83,6 +85,7 @@ public class powerBook : MonoBehaviour
         shield.gameObject.SetActive(false);
         intTime = startIntTime;
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         // CONFIGURANDO REFERENCIAS
         pages[0] = GameObject.Find("Page Jump");
@@ -218,11 +221,13 @@ public class powerBook : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 dashPressed = false;
                 gameObject.GetComponent<PlayerHealth>().dontMove = false;
+                anim.SetBool("isDashing", false);
             }
             else
             {
-                Instantiate(dashParticle, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+                ObjectPooler.Instance.SpawnFromPool("Dash", new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
                 dashTime -= Time.deltaTime;
+                anim.SetBool("isDashing", true);
 
                 if (direction == 1)
                 {
@@ -247,10 +252,12 @@ public class powerBook : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 upDashPressed = false;
                 gameObject.GetComponent<PlayerHealth>().dontMove = false;
+                anim.SetBool("isDashing", false);
             }
             else
             {
-                Instantiate(dashParticle, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+                ObjectPooler.Instance.SpawnFromPool("Dash", new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+                anim.SetBool("isDashing", true);
                 gameObject.GetComponent<PlayerController>().physicsAllow = false;
                 dashTime -= Time.deltaTime;
                 rb.velocity = Vector2.up * dashSpeed;
