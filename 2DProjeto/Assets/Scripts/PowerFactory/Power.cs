@@ -9,7 +9,7 @@ public abstract class Power
 {
     public abstract string Name { get; }
     public abstract void Process();
-    //public abstract float coolTime;
+    public float coolTime;
     public GameObject cooldown;
     public GameObject ui;
 }

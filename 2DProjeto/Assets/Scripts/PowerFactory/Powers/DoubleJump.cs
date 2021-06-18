@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class DoubleJump : Power
 {
-    public override string Name => "Double Jump";
-    float coolTime = 5;
+    public override string Name => "DoubleJump";
 
     public override void Process()
     {
         cooldown = GameObject.Find(Name + " Cooldown");
         ui = GameObject.Find(Name + " Button");
+        coolTime = 5;
 
         Debug.Log("SUMONEI " + Name);
         //cooldown.GetComponent<Cooldown>().cooldownTime = coolTime;
