@@ -9,13 +9,7 @@ public class Dash : Power
 
     public override void Process()
     {
-        cooldown = GameObject.Find(Name + " Cooldown");
-        ui = GameObject.Find(Name + " Button");
-        coolTime = 5;
-
         Debug.Log("SUMONEI " + Name);
-        //cooldown.GetComponent<Cooldown>().cooldownTime = coolTime;
-        //cooldown.GetComponent<Cooldown>().timerActive = true;
-        ui.GetComponent<Slider>().maxValue = coolTime;
+        player.GetComponent<PowerMovement>().DashF();
     }
 }

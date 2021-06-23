@@ -9,7 +9,5 @@ public abstract class Power
 {
     public abstract string Name { get; }
     public abstract void Process();
-    public float coolTime;
-    public GameObject cooldown;
-    public GameObject ui;
+    public GameObject player = GameObject.Find("PlayerPrefab");
 }
