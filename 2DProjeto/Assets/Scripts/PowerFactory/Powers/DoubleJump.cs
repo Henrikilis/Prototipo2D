@@ -10,7 +10,6 @@ public class DoubleJump : Power
     public override void Process()
     {
         Debug.Log("SUMONEI " + Name);
-        //cooldown.GetComponent<Cooldown>().cooldownTime = coolTime;
-        //cooldown.GetComponent<Cooldown>().timerActive = true;
+        player.GetComponent<PowerMovement>().DoubleJump();
     }
 }

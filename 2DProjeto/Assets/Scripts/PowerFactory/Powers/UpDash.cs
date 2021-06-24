@@ -12,7 +12,7 @@ public class UpDash : Power
         //cooldown = GameObject.Find(Name + " Cooldown");
         //ui = GameObject.Find(Name + " Button");
         //coolTime = 5;
-
+        player.GetComponent<PowerMovement>().DashU();
         Debug.Log("SUMONEI " + Name);
         //cooldown.GetComponent<Cooldown>().cooldownTime = coolTime;
         //cooldown.GetComponent<Cooldown>().timerActive = true;
