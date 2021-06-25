@@ -12,4 +12,8 @@ public class Stomp : Power
         Debug.Log("SUMONEI " + Name);
         player.GetComponent<PowerMovement>().Stomp();
     }
+    public override void Cooldown()
+    {
+
+    }
 }

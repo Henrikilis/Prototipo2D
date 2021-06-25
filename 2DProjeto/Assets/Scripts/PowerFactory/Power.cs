@@ -10,4 +10,5 @@ public abstract class Power
     public abstract string Name { get; }
     public abstract void Process();
     public GameObject player = GameObject.Find("PlayerPrefab");
+    public abstract void Cooldown();
 }

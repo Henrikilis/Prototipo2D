@@ -10,20 +10,30 @@ public class Shift : Power
     [Header("Intangibility")]
     public Color phasedColor = new Color(1f,1f,1f,1f);
     public Color unphasedColor = new Color(0f, 0f, 1f, 0.5f);
+    private bool firstTime;
+    public GameObject cooldown;
 
     public override void Process()
     {
+        cooldown = GameObject.Find(Name + " Cooldown");
+        if (cooldown == null)
+            Start();
         Debug.Log("Going Intangible");
         player.layer = 11;
         player.GetComponent<SpriteRenderer>().color = unphasedColor;
-        Intangibility();
+
+        cooldown.GetComponent<Cooldown>().timerActive = true;
     }
 
-    IEnumerator Intangibility()
+    public override void Cooldown()
     {
-        yield return new WaitForSeconds(2);
-        Debug.Log("Done");
         player.layer = 9;
         player.GetComponent<SpriteRenderer>().color = phasedColor;
+    }
+
+    void Start()
+    {
+        CooldownPool.Instance.SpawnCooldown(Name, 2);
+        cooldown = GameObject.Find(Name + " Cooldown");
     }
 }

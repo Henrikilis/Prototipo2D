@@ -18,4 +18,8 @@ public class UpDash : Power
         //cooldown.GetComponent<Cooldown>().timerActive = true;
         //ui.GetComponent<Slider>().maxValue = coolTime;
     }
+    public override void Cooldown()
+    {
+
+    }
 }

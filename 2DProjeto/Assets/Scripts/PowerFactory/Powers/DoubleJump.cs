@@ -12,4 +12,8 @@ public class DoubleJump : Power
         Debug.Log("SUMONEI " + Name);
         player.GetComponent<PowerMovement>().DoubleJump();
     }
+    public override void Cooldown()
+    {
+
+    }
 }

@@ -17,4 +17,8 @@ public class Shield : Power
         //cooldown.GetComponent<Cooldown>().cooldownTime = coolTime;
         //cooldown.GetComponent<Cooldown>().timerActive = true;
     }
+    public override void Cooldown()
+    {
+
+    }
 }

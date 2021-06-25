@@ -12,4 +12,8 @@ public class Dash : Power
         Debug.Log("SUMONEI " + Name);
         player.GetComponent<PowerMovement>().DashF();
     }
+    public override void Cooldown()
+    {
+
+    }
 }
